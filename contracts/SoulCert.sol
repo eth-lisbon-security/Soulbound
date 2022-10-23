@@ -23,7 +23,10 @@ contract SoulCert is ERC721, ERC721URIStorage, Ownable {
     function _beforeTokenTransfer(
         address from, 
         address to, 
-       
+        uint256 tokenId
+        ) internal override virtual {
+        require(from == address(0), "Err: token transfer is BLOCKED");   
+        super._beforeTokenTransfer(from, to, tokenId);  
         }
     // The following functions are overrides required by Solidity.
 
