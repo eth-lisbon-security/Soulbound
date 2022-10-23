@@ -20,6 +20,8 @@ contract SoulCert is ERC721, ERC721URIStorage, Ownable {
         _setTokenURI(tokenId, uri);
     }
 
+    //Every time this code will run, the require statement will check: 
+
     function _beforeTokenTransfer(
         address from, 
         address to, 
