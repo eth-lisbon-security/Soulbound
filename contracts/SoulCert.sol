@@ -22,7 +22,8 @@ contract SoulCert is ERC721, ERC721URIStorage, Ownable {
 
     function _beforeTokenTransfer(
         address from, 
-    
+        address to, 
+       
         }
     // The following functions are overrides required by Solidity.
 
