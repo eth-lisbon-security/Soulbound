@@ -9,5 +9,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract SoulCert is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
+    Counters.Counter private _tokenIdCounter;
+
 
 }
