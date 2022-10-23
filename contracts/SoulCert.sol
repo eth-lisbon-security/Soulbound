@@ -7,5 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract SoulCert is ERC721, ERC721URIStorage, Ownable {
+    using Counters for Counters.Counter;
+
 
 }
