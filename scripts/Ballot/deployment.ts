@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import "dotenv/config";
 import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
+import * as soulCert from "../../artifacts/contracts/SoulCert.sol/SoulCert.json";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
