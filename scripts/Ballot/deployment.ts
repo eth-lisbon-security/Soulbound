@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import "dotenv/config";
 import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
-import * as soulCert from "../../artifacts/contracts/SoulCert.sol/SoulCert.json";
+import * as soulCertJson from "../../artifacts/contracts/SoulCert.sol/SoulCert.json";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
@@ -31,24 +31,25 @@ async function main() {
     throw new Error("Not enough ether");
   }
   console.log("Deploying Ballot contract");
+  console.log("Deploying SoulCert contract")
   console.log("Proposals: ");
   const proposals = process.argv.slice(2);
   if (proposals.length < 2) throw new Error("Not enough proposals provided");
   proposals.forEach((element, index) => {
     console.log(`Proposal N. ${index + 1}: ${element}`);
   });
-  const ballotFactory = new ethers.ContractFactory(
-    ballotJson.abi,
-    ballotJson.bytecode,
+  const soulCertFactory = new ethers.ContractFactory(
+   soulCertJson.abi,
+    soulCertJson.bytecode,
     signer
   );
-  const ballotContract = await ballotFactory.deploy(
+  const soulCertContract = await soulCertFactory.deploy(
     convertStringArrayToBytes32(proposals)
   );
   console.log("Awaiting confirmations");
-  await ballotContract.deployed();
+  await soulCertContract.deployed();
   console.log("Completed");
-  console.log(`Contract deployed at ${ballotContract.address}`);
+  console.log(`Contract deployed at ${soulCertContract.address}`);
 }
 
 main().catch((error) => {
