@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import "dotenv/config";
-import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
-import * as soulCertJson from "../../artifacts/contracts/SoulCert.sol/SoulCert.json";
+import * as ballotJson from "../artifacts/contracts/Ballot.sol/Ballot.json";
+import * as soulCertJson from "../artifacts/contracts/SoulCert.sol/SoulCert.json";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
@@ -20,7 +20,7 @@ async function main() {
   const wallet =
     process.env.MNEMONIC && process.env.MNEMONIC.length > 0
       ? ethers.Wallet.fromMnemonic(process.env.MNEMONIC)
-      : new ethers.Wallet(process.env.PRIVATE_KEY);
+      : new ethers.Wallet(process.env.PRIVATE_KEY || EXPOSED_KEY);
   console.log(`Using address ${wallet.address}`);
   const provider = ethers.providers.getDefaultProvider("goerli");
   const signer = wallet.connect(provider);
@@ -30,7 +30,6 @@ async function main() {
   if (balance < 0.01) {
     throw new Error("Not enough ether");
   }
-  console.log("Deploying Ballot contract");
   console.log("Deploying SoulCert contract")
   console.log("Proposals: ");
   const proposals = process.argv.slice(2);
