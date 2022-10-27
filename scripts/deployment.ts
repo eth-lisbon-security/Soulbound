@@ -36,9 +36,7 @@ async function main() {
     soulCertJson.bytecode,
     signer
   );
-  const soulCertContract = await soulCertFactory.deploy(
-    convertStringArrayToBytes32(proposals)
-  );
+  const soulCertContract = await soulCertFactory.deploy();
   console.log("Awaiting confirmations");
   await soulCertContract.deployed();
   console.log("Completed");
