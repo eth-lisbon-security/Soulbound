@@ -31,7 +31,6 @@ async function main() {
     throw new Error("Not enough ether");
   }
   console.log("Deploying SoulCert contract")
-  console.log("Proposals: ");
   const soulCertFactory = new ethers.ContractFactory(
    soulCertJson.abi,
     soulCertJson.bytecode,
