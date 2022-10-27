@@ -32,11 +32,6 @@ async function main() {
   }
   console.log("Deploying SoulCert contract")
   console.log("Proposals: ");
-  const proposals = process.argv.slice(2);
-  if (proposals.length < 2) throw new Error("Not enough proposals provided");
-  proposals.forEach((element, index) => {
-    console.log(`Proposal N. ${index + 1}: ${element}`);
-  });
   const soulCertFactory = new ethers.ContractFactory(
    soulCertJson.abi,
     soulCertJson.bytecode,
