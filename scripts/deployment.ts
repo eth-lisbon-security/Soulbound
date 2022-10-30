@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import "dotenv/config";
 import * as ballotJson from "../artifacts/contracts/Ballot.sol/Ballot.json";
-import * as soulCertJson from "../artifacts/contracts/SoulCert.sol/SoulCert.json";
+import * as CreditBadgeJson from "../artifacts/contracts/CreditBadge.sol/CreditBadge.json";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
@@ -30,17 +30,17 @@ async function main() {
   if (balance < 0.01) {
     throw new Error("Not enough ether");
   }
-  console.log("Deploying SoulCert contract")
-  const soulCertFactory = new ethers.ContractFactory(
-   soulCertJson.abi,
-    soulCertJson.bytecode,
+  console.log("Deploying CreditBadge contract")
+  const CreditBadgeFactory = new ethers.ContractFactory(
+   CreditBadgeJson.abi,
+    CreditBadgeJson.bytecode,
     signer
   );
-  const soulCertContract = await soulCertFactory.deploy();
+  const CreditBadgeContract = await CreditBadgeFactory.deploy();
   console.log("Awaiting confirmations");
-  await soulCertContract.deployed();
+  await CreditBadgeContract.deployed();
   console.log("Completed");
-  console.log(`Contract deployed at ${soulCertContract.address}`);
+  console.log(`Contract deployed at ${CreditBadgeContract.address}`);
 }
 
 main().catch((error) => {
