@@ -5,10 +5,10 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "https://github.com/DanielAbalde/NFT-On-Chain-Metadata/blob/master/contracts/ERC721OnChainMetadata.sol";
+import "./OCMeta.sol";
 
 // Author: @mnm458
-contract CreditBadge is ERC721, ERC721URIStorage, Ownable {
+contract CreditBadge is ERC721, ERC721URIStorage, Ownable, OCMeta {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -41,9 +41,15 @@ contract CreditBadge is ERC721, ERC721URIStorage, Ownable {
     function tokenURI(uint256 tokenId)
         public
         view
+        virtual
         override(ERC721, ERC721URIStorage)
         returns (string memory)
     {
-        return super.tokenURI(tokenId);
+        require(_exists(tokenId), "tokenId doesn't exist");
+        return _createTokenURI(tokenId);
+    }
+
+    function contractURI() public view virtual returns (string memory) { 
+        return _createContractURI();
     }
 }
